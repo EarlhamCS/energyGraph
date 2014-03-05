@@ -1,0 +1,155 @@
+/* 	file: main.css
+	author: Leif DeJong
+	created: Jan 2012
+ */
+
+/* 	If you change button text, change the following to match: .menu ul & .menu .button
+	Details of what to change are outlined in the sections */
+
+/* Presets */
+* {
+	margin:0;
+	padding:0;
+}
+
+/* Body Defaults */
+body {
+	background: url("../images/header_bg.png") repeat-x scroll left top #EDEDED;	
+	font-family: Georgia, Serif;
+}
+
+/* Header */
+#header {
+	width:1000px;
+	margin: 0 auto;
+}
+
+#header a{
+	text-decoration:none;
+	outline:none;
+}
+/* Page Title */
+#page-title {
+	margin-top:55px;
+	font-size:30px;
+	color:#9f2d42;
+	float:right;
+}
+
+#page-title a{
+	text-decoration: none;
+	color: #9f2d42;
+}
+
+#page-title a:hover{
+	color: #000;
+}
+
+/* Content */
+#content {
+	min-width:600px;
+	width:1000px;
+	margin:0 auto;
+	padding: 20px 0;
+}
+
+/* Menu */
+.menu {
+	margin-top:20px;
+	margin-bottom:20px;
+}
+
+.menu li {
+	display:inline;
+}
+
+.menu ul {
+	width: 1000px;
+	margin-left:4px; /* !! Change this if you change button text */
+}
+
+html ul.links li.active .button  {
+	background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #dfdfdf), color-stop(1, #ededed) );
+	background:-moz-linear-gradient( center top, #dfdfdf 5%, #ededed 100% );
+	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#dfdfdf', endColorstr='#ededed');
+	background-color:#dfdfdf;
+}
+
+.menu .button {
+	-moz-box-shadow:inset 0px 0px 0px 0px #ffffff;
+	-webkit-box-shadow:inset 0px 0px 0px 0px #ffffff;
+	box-shadow:inset 0px 0px 0px 0px #ffffff;
+	background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #ededed), color-stop(1, #dfdfdf) );
+	background:-moz-linear-gradient( center top, #ededed 5%, #dfdfdf 100% );
+	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#ededed', endColorstr='#dfdfdf');
+	background-color:#ededed;
+	border:1px solid #dcdcdc;
+	display:inline-block;
+	color:#777777;
+	font-family:arial;
+	font-size:15px;
+	font-weight:bold;
+	padding:10px 98px; /* !! Change the second option if you change the button text */
+	text-decoration:none;
+	text-shadow:1px 1px 0px #ffffff;
+	cursor:pointer;
+}
+
+.menu .button:hover {
+	background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #dfdfdf), color-stop(1, #ededed) );
+	background:-moz-linear-gradient( center top, #dfdfdf 5%, #ededed 100% );
+	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#dfdfdf', endColorstr='#ededed');
+	background-color:#dfdfdf;
+}
+
+.menu .button:active {
+	position:relative;
+	top:1px;
+}
+
+/* Chart Wrapper */
+#chart_div{
+}
+
+#chart_div iframe {
+	position:relative;
+	/* Border Radius */
+ 	-moz-border-radius: 5px 5px;
+    -khtml-border-radius: 5px 5px;
+   	-webkit-border-radius: 5px 5px;
+   	/* Box Shadow */
+   	-moz-box-shadow: 0px 0px 5px #666;
+    -webkit-box-shadow: 0px 0px 5px #666;
+    box-shadow: 0px 0px 5px #666;
+    -webkit-transition: -webkit-box-shadow 0.1s ease-out;
+    -moz-transition: -webkit-box-shadow 0.1s ease-out;
+    -o-transition: -webkit-box-shadow 0.1s ease-out;
+    transition: -webkit-box-shadow 0.1s ease-out;
+}
+
+#gauge_div{
+}
+
+#gauge_div iframe {
+	position:relative;
+	/* Border Radius */
+ 	-moz-border-radius: 5px 5px;
+    -khtml-border-radius: 5px 5px;
+   	-webkit-border-radius: 5px 5px;
+   	/* Box Shadow */
+   	-moz-box-shadow: 0px 0px 5px #666;
+    -webkit-box-shadow: 0px 0px 5px #666;
+    box-shadow: 0px 0px 5px #666;
+    -webkit-transition: -webkit-box-shadow 0.1s ease-out;
+    -moz-transition: -webkit-box-shadow 0.1s ease-out;
+    -o-transition: -webkit-box-shadow 0.1s ease-out;
+    transition: -webkit-box-shadow 0.1s ease-out;
+}
+
+/* Site Details */
+#site-details {
+	margin-top:20px;
+	text-align:center;
+	font-size:10px;
+	color:#888;
+}

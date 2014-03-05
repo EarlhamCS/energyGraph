@@ -1,0 +1,184 @@
+/* 	file: main.css
+	author: Leif DeJong
+	created: Jan 2012
+
+	Tristan Wright July 2012
+	modified to support new elements for eDisplay-v2
+	removed .menu styles, original in archive
+ */
+
+* {
+	margin:0;
+	padding:0;
+}
+
+/*main.js assigns these colors, add them there,
+ *also leave them in spot in the document.*/
+.btn.active.total	{}
+.btn.active.barrett	{}
+.btn.active.bundy	{}
+.btn.active.hoerner	{}
+.btn.active.mills	{}
+.btn.active.oa		{}
+.btn.active.warren	{}
+.btn.active.wilson	{}
+
+body {
+	background: url("../images/header_bg.png") repeat-x scroll left top #EDEDED;
+	font-family: Georgia, Serif;
+}
+
+#overlay{
+	visibility: hidden;
+	position: absolute;
+	left: 0px;
+	top: 0px;
+	width:100%;
+	height:100%;
+	text-align:center;
+	z-index: 10;
+	color: white;
+	background-color: rgba(200,200,200,.5);
+}
+
+#header{
+	width:1000px;
+	margin: 0 auto;
+}
+
+#header a{
+	text-decoration:none;
+	outline:none;
+}
+
+#page-title{
+	margin: 60px auto 0;
+	font-size:30px;
+	color:#9f2d42;
+	float:right;
+}
+
+#page-title.chrome{
+	margin:-30px auto 0;
+	}
+
+#page-title a{
+	text-decoration: none;
+	color: #9f2d42;
+}
+
+#page-title a:hover, #page-title a:active{
+	color: #000;
+}
+
+#dashboard{
+	width:80%;
+	margin:20px auto;
+	position:relative;
+	overflow: hidden;
+	/* Border Radius */
+ 	-moz-border-radius: 5px 5px;
+    -khtml-border-radius: 5px 5px;
+   	-webkit-border-radius: 5px 5px;
+   	/* Box Shadow */
+   	-moz-box-shadow: 0px 0px 5px #666;
+    -webkit-box-shadow: 0px 0px 5px #666;
+    box-shadow: 0px 0px 5px #666;
+    -webkit-transition: -webkit-box-shadow 0.1s ease-out;
+    -moz-transition: -webkit-box-shadow 0.1s ease-out;
+    -o-transition: -webkit-box-shadow 0.1s ease-out;
+    transition: -webkit-box-shadow 0.1s ease-out;
+}
+
+.about{
+	line-height: 25px;
+	text-align: justify;
+	padding: 35px 220px;
+	text-indent: 6%;
+	}
+
+#lineChart{
+	margin-top: -50px;
+	}
+
+#control{
+	height: 70px;
+	margin-bottom: 10px;
+}
+
+#sidebar{
+	margin: 0px auto 10px;
+	text-align: center;
+}
+
+.btnGroup > button:active{
+	background-color: #ddd;
+}
+
+.btn, .aboutBtn, .getPlink{
+	font-size: 18px;
+	font-family: Georgia, Serif;
+	border: 1px solid #666;
+	border-radius: 5px;
+	-webkit-border-radius: 5px;
+	-moz-border-radius: 5px;
+	-moz-box-shadow: 0px 0px 2px #666;
+    -webkit-box-shadow: 0px 0px 2px #666;
+    box-shadow: 0px 0px 2px #666;
+}
+
+.aboutBtn{
+	height: 35px;
+	width: 100px;
+	margin-left: 30px;
+	background: white;
+	text-align: center;
+	vertical-align: text-top;
+	}
+
+.btn{
+	height: 50px;
+	padding: 0px 50px 0 14px;
+	margin: 0px 3px;
+	text-align: left;
+	background: transparent url('../images/cbox1.png') center right no-repeat;
+}
+
+.btn.active, .btn.active:active{
+	background: transparent url('../images/cbox2.png') center right no-repeat;
+	color: whitesmoke;
+}
+
+.btn:hover, .btn.active:hover, .aboutBtn:hover{
+	border: 1px solid #222;
+	-moz-box-shadow: 0px 0px 4px #222;
+    -webkit-box-shadow: 0px 0px 4px #222;
+    box-shadow: 0px 0px 4px #222;
+}
+
+.aboutBtn:active, .getPlink:active{
+	background-color: #ddd;
+}
+
+form{text-align:center; margin:-21px 0 0 21%; font-family: Georgia, Serif;}
+input{font-family: 'Georgia', Serif;}
+
+#plink{
+	width: 150px;
+	height: 20px;
+	font-size: 14px;
+}
+
+.getPlink{
+	height: 24px;
+	width: 110px;
+	font-size: 16px;
+	background: white;
+}
+
+#site-details{
+	margin: 20px 0 20px 21%;
+	text-align:left;
+	font-size:10px;
+	color:#888;
+}

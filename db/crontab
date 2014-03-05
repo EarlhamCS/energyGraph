@@ -1,0 +1,15 @@
+# m h  dom mon dow   command
+*/1 * * * * /home/energy/scripts/production/harvest-store-total.pl
+*/1 * * * * /home/energy/scripts/production/harvest-store-wilson.pl
+*/1 * * * * /home/energy/scripts/production/harvest-store-warren.pl
+*/1 * * * * /home/energy/scripts/production/harvest-store-barrett.pl
+*/1 * * * * /home/energy/scripts/production/harvest-store-bundy.pl
+*/1 * * * * /home/energy/scripts/production/harvest-store-oa.pl
+*/1 * * * * /home/energy/scripts/production/harvest-store-hoerner.pl
+*/1 * * * * /home/energy/scripts/production/harvest-store-mills.pl
+# */1 * * * * /home/energy/scripts/production/js-file-gen.pl production
+*/5 * * * * /home/energy/scripts/production/data_gen.py
+*/5 * * * * cp /home/energy/public_html/production/eDisplay/line_chart.txt /home/energy/public_html/development/eDisplayv2/temp_line_chart.txt
+0 0 * * * /home/energy/contest/daily/execute.bash
+
+

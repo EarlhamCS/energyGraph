@@ -1,0 +1,74 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Earlham College Electrical Energy Consumption</title>
+	<link type="image/x-icon" href="images/favicon.png" rel="shortcut icon">
+	<link rel="stylesheet" type="text/css" href="css/main.css" />
+	<!--Scripts at bottom -->
+</head>
+<body 	onload="drawLineChart([],[]);flipAndRedraw(0);">
+	<div id="overlay">
+		<a onclick="overlay()">
+			<button style="	background: red; color:white;
+							position:absolute; margin: 60px 0 0 313px;" class="aboutBtn">
+			Close
+			</button>
+		</a>
+		<!--using the slider, using the checkboxes-->
+		<img style="position: absolute; margin: 535px 0 0 -405px;" src="images/buttons.png"/>
+		<img style="position: absolute; margin: 580px 0 0 220px;" src="images/slider.png"/>
+	</div>
+	<div id="header">
+		<img src="images/logo.png" title="Logo" border="none"/></a>
+		<div id="page-title">
+			<a href="index.html">Electrical Energy Consumption</a>
+			<a onclick="overlay()"><button class="aboutBtn">How to Use</button></a>
+			<a href="about.html"><button class="aboutBtn">About</button></a>
+		</div>
+	</div> <!-- end header -->
+	<div id="dashboard">
+		<div id="lineChart"></div>
+		<div id="control"></div>
+	</div> <!-- end dashboard and chart. -->
+
+	<div id="sidebar">
+		<div class="btn-group" data-toggle="buttons-checkbox">
+			<button class="btn total" 	onclick="flipAndRedraw(0)">Total	</button>
+			<button class="btn active barrett" 	onclick="flipAndRedraw(1)">Barrett	</button>
+			<button class="btn active bundy" 	onclick="flipAndRedraw(2)">Bundy	</button>
+			<button class="btn active hoerner" 	onclick="flipAndRedraw(3)">Hoerner	</button>
+			<button class="btn active mills" 	onclick="flipAndRedraw(4)">Mills	</button>
+			<button class="btn active oa" 		onclick="flipAndRedraw(5)">Olvey Andis</button>
+			<button class="btn active warren" 	onclick="flipAndRedraw(6)">Warren	</button>
+			<button class="btn active wilson" 	onclick="flipAndRedraw(7)">Wilson	</button>
+		</div>
+	</div>
+
+	<div id="site-details">
+	<!-- Add any site details below. Please leave credit in my name (Leif?)-->
+		<p>This is a project of Green Science and the Maintenance Department at Earlham College. <br />
+		Gaps in the graph signify where power went out.
+		Click the About button to find out more about this project.</p>
+
+	<form>
+		<input id="plink" type="text" value=""></input>
+		<input class="getPlink"type="button" value="get permalink"
+					onclick="
+					document.getElementById('plink').value = genPermalink();
+					document.getElementById('plink').select();"></input>
+	</form>
+	</div> <!-- end site details -->
+
+
+	<!-- scripts -->
+    <script type="text/javascript" src="js/jquery-1.7.2.min.js"></script>
+    <script type="text/javascript" src="js/bootstrap-button.js"></script>
+    <script type="text/javascript" src="jsapiOld.js"></script>
+    <script type="text/javascript" src="corechartOld.js"</script>
+    <script type="text/javascript">
+      google.load('visualization', '1.1', {packages: ['corechart', 'controls']});
+    </script>
+    <script type="text/javascript" src="js/main.js"></script>
+</body>
+</html>

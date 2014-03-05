@@ -1,0 +1,131 @@
+/* 	file: main.css
+	author: Leif DeJong
+	created: Jan 2012
+	
+	Tristan Wright July 2012
+	modified to support new elements for eDisplay-v2
+	removed .menu styles, original in archive
+ */
+
+* {
+	margin:0;
+	padding:0;
+}
+
+body {
+	background: url("../images/header_bg.png") repeat-x scroll left top #EDEDED;	
+	font-family: Georgia, Serif;
+}
+
+#header{
+	width:1000px;
+	margin: 0 auto;
+}
+
+#header a{
+	text-decoration:none;
+	outline:none;
+}
+
+
+#page-title{
+	margin-top:55px;
+	font-size:30px;
+	color:#9f2d42;
+	float:right;
+}
+
+#page-title a{
+	text-decoration: none;
+	color: #9f2d42;
+}
+
+#page-title a:hover, #page-title a:active{
+	color: #000;
+}
+
+#dashboard{
+	min-width:600px;
+	width:1000px;
+	margin:20px auto;
+	
+	position:relative;
+	/* Border Radius */
+ 	-moz-border-radius: 5px 5px;
+    -khtml-border-radius: 5px 5px;
+   	-webkit-border-radius: 5px 5px;
+   	/* Box Shadow */
+   	-moz-box-shadow: 0px 0px 5px #666;
+    -webkit-box-shadow: 0px 0px 5px #666;
+    box-shadow: 0px 0px 5px #666;
+    -webkit-transition: -webkit-box-shadow 0.1s ease-out;
+    -moz-transition: -webkit-box-shadow 0.1s ease-out;
+    -o-transition: -webkit-box-shadow 0.1s ease-out;
+    transition: -webkit-box-shadow 0.1s ease-out;
+}
+
+#line_chart{
+	width: 1000px;
+	height: 400px;
+	}
+
+#control{
+	width: 1000px;
+	height: 70px;
+	margin-bottom: 10px;
+}
+
+.btn{
+	height: 50px;
+	width: 150px;
+	padding: 0px;
+	font-size: 16px;
+	font-family: Georgia, Serif;
+}
+
+.btn.active{
+	background: #800000;
+	color: whitesmoke;
+	}
+.btn.activea{
+background: #0000FF;
+color:whitesmoke;
+}
+
+#sidebar{
+	margin: -11px auto;
+	text-align: center;
+}
+
+#residential label, #academic label{
+	padding: 0 15px;
+}
+
+#chart_div{
+}
+
+#gauge_div{
+}
+
+#gauge_div iframe {
+	position:relative;
+	/* Border Radius */
+ 	-moz-border-radius: 5px 5px;
+    -khtml-border-radius: 5px 5px;
+   	-webkit-border-radius: 5px 5px;
+   	/* Box Shadow */
+   	-moz-box-shadow: 0px 0px 5px #666;
+    -webkit-box-shadow: 0px 0px 5px #666;
+    box-shadow: 0px 0px 5px #666;
+    -webkit-transition: -webkit-box-shadow 0.1s ease-out;
+    -moz-transition: -webkit-box-shadow 0.1s ease-out;
+    -o-transition: -webkit-box-shadow 0.1s ease-out;
+    transition: -webkit-box-shadow 0.1s ease-out;
+}
+
+#site-details {
+	margin-top:20px;
+	text-align:center;
+	font-size:10px;
+	color:#888;
+}
