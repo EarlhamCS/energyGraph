@@ -1,0 +1,17 @@
+Website:
+	Running file://<path> in a browser will not correctly load graph.
+	Having apache as the server allows the graph to load correctly.
+
+Branches:
+master            - the current production code.
+firstNormAttempt  - the clientside normalization website based on the
+	            static-timescale display.
+secondNormAttempt - the serverside normalization. 
+genericCrontab    - replacing the current one-to-one script-to-building
+	            pairing with a script that takes the building ip as
+     	 	    a command-line argument.
+What is what?
+	energy.sql is a pg_dump of the database with normalized views.
+                 
+To Do:
+	Integrate data_gen.py with the new table
