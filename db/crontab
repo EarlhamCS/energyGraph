@@ -9,6 +9,7 @@
 */1 * * * * /home/energy/scripts/production/harvest-store-mills.pl
 # */1 * * * * /home/energy/scripts/production/js-file-gen.pl production
 */5 * * * * /home/energy/scripts/production/data_gen.py
+*/5 * * * * /home/energy/scripts/production/norm_data_gen.py
 */5 * * * * cp /home/energy/public_html/production/eDisplay/line_chart.txt /home/energy/public_html/development/eDisplayv2/temp_line_chart.txt
 0 0 * * * /home/energy/contest/daily/execute.bash
 
