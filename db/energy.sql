@@ -25,10 +25,10 @@ COMMENT ON EXTENSION plpgsql IS 'PL/pgSQL procedural language';
 SET search_path = public, pg_catalog;
 
 --
--- Name: numbergen(smallint, double precision, double precision, double precision[]); Type: FUNCTION; Schema: public; Owner: energy
+-- Name: numberGen(smallint, double precision, double precision, double precision[]); Type: FUNCTION; Schema: public; Owner: energy
 --
 
-CREATE FUNCTION numbergen(occ smallint, envelope double precision, degreedays double precision, weights double precision[]) RETURNS numeric
+CREATE OR REPLACE FUNCTION numberGen(occ smallint, envelope double precision, degreedays double precision, weights double precision[]) RETURNS numeric
     LANGUAGE plpgsql
     AS $$
 DECLARE
@@ -49,41 +49,44 @@ BEGIN
 $$;
 
 
-ALTER FUNCTION public.numbergen(occ smallint, envelope double precision, degreedays double precision, weights double precision[]) OWNER TO energy;
+ALTER FUNCTION public.numberGen(occ smallint, envelope double precision, degreedays double precision, weights double precision[]) OWNER TO energy;
 
 
 --
--- Name: takeone(character varying, numeric, numeric[]); Type: FUNCTION; Schema: public; Owner: energy
+-- Name: numberTrans(character varying, numeric, numeric[]); Type: FUNCTION; Schema: public; Owner: energy
 --
 
-CREATE FUNCTION takeone(area character varying, preal numeric, numbers numeric[]) RETURNS numeric
+CREATE OR REPLACE FUNCTION numberTrans(area character varying, preal numeric, numbers numeric[]) RETURNS numeric
     LANGUAGE plpgsql
     AS $$
+DECLARE
+    scaleConstant numeric;
 BEGIN
-        IF area = 'Bundy' THEN
-          RETURN preal * numbers[1];
-        ELSIF area = 'EH' THEN
-          RETURN preal * numbers[2];
-        ELSIF area = 'OA' THEN
-          RETURN preal * numbers[3];
-        ELSIF AREA = 'Mills' THEN
-          RETURN preal * numbers[4];
-        ELSIF AREA = 'Hoerner' THEN
-          RETURN preal * numbers[5];
-        ELSIF AREA = 'Warren' THEN
-          RETURN preal * numbers[6];
-        ELSIF AREA = 'Wilson' THEN
-          RETURN preal * numbers[7];
-        ELSIF area = 'Barrett' THEN
-          RETURN preal * numbers[8];
-        ELSE
-          RETURN -1.0;
-        END IF;
+    scaleConstant := 1.0 / numbers[1];
+    IF area = 'Bundy' THEN
+      RETURN preal * numbers[1] * scaleConstant;
+    ELSIF area = 'EH' THEN
+      RETURN preal * numbers[2] * scaleConstant;
+    ELSIF area = 'OA' THEN
+      RETURN preal * numbers[3] * scaleConstant;
+    ELSIF AREA = 'Mills' THEN
+      RETURN preal * numbers[4] * scaleConstant;
+    ELSIF AREA = 'Hoerner' THEN
+      RETURN preal * numbers[5] * scaleConstant;
+    ELSIF AREA = 'Warren' THEN
+      RETURN preal * numbers[6] * scaleConstant;
+    ELSIF AREA = 'Wilson' THEN
+      RETURN preal * numbers[7] * scaleConstant;
+    ELSIF area = 'Barrett' THEN
+      RETURN preal * numbers[8] * scaleConstant;
+    ELSE
+      RETURN -1.0;
+END IF;
 END;
 $$;
 
 
-ALTER FUNCTION public.takeone(area character varying, preal numeric, numbers numeric[]) OWNER TO energy;
+ALTER FUNCTION public.numberTrans(area character varying, preal numeric, numbers numeric[]) OWNER TO energy;
 
 SET default_tablespace = '';
 
@@ -177,7 +180,7 @@ ALTER TABLE public.normparams OWNER TO energy;
 --
 
 CREATE VIEW numbers AS
-    SELECT normparams.area, numbergen(normparams.occupancy, normparams.envelope, normparams.degreedays, normparams.weights) AS buildingnum, normparams.date FROM normparams;
+    SELECT normparams.area, numberGen(normparams.occupancy, normparams.envelope, normparams.degreedays, normparams.weights) AS buildingnum, normparams.date FROM normparams;
 
 
 ALTER TABLE public.numbers OWNER TO energy;
@@ -187,7 +190,7 @@ ALTER TABLE public.numbers OWNER TO energy;
 --
 
 CREATE VIEW normed_electrical_energy AS
-    SELECT electrical_energy.area, takeone(electrical_energy.area, electrical_energy.preal, (SELECT array_agg(numbers.buildingnum) AS array_agg FROM numbers WHERE ((numbers.area)::text = ANY ((ARRAY['Bundy'::character varying, 'Barrett'::character varying, 'EH'::character varying, 'OA'::character varying, 'Mills'::character varying, 'Hoerner'::character varying, 'Warren'::character varying, 'Wilson'::character varying])::text[])))) AS preal, electrical_energy.date FROM electrical_energy WHERE ((electrical_energy.area)::text = ANY ((ARRAY['Bundy'::character varying, 'Barrett'::character varying, 'EH'::character varying, 'OA'::character varying, 'Mills'::character varying, 'Hoerner'::character varying, 'Warren'::character varying, 'Wilson'::character varying])::text[]));
+    SELECT electrical_energy.area, numberTrans(electrical_energy.area, electrical_energy.preal, (SELECT array_agg(numbers.buildingnum) AS array_agg FROM numbers WHERE ((numbers.area)::text = ANY ((ARRAY['Bundy'::character varying, 'Barrett'::character varying, 'EH'::character varying, 'OA'::character varying, 'Mills'::character varying, 'Hoerner'::character varying, 'Warren'::character varying, 'Wilson'::character varying])::text[])))) AS preal, electrical_energy.date FROM electrical_energy WHERE ((electrical_energy.area)::text = ANY ((ARRAY['Bundy'::character varying, 'Barrett'::character varying, 'EH'::character varying, 'OA'::character varying, 'Mills'::character varying, 'Hoerner'::character varying, 'Warren'::character varying, 'Wilson'::character varying])::text[]));
 
 
 ALTER TABLE public.normed_electrical_energy OWNER TO energy;
