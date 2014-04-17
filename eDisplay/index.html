@@ -60,6 +60,11 @@
 	</form>
 	</div> <!-- end site details -->
 
+    <!-- main.js depends on these parameters, so this must come before main.js in this html document -->
+    <form id="parameters">
+        <input type="radio" name="isNormalized" value="normalized" checked> Normalized Values
+        <input type="radio" name="isNormalized" value="raw"> Raw Values
+    </form>
 
 	<!-- scripts -->
     <script type="text/javascript" src="js/jquery-1.7.2.min.js"></script>
@@ -70,5 +75,6 @@
       google.load('visualization', '1.1', {packages: ['corechart', 'controls']});
     </script>
     <script type="text/javascript" src="js/main.js"></script>
+
 </body>
 </html>

@@ -10,27 +10,19 @@ except ImportError:
     import json
 
 
-def main(building_file, json_file):
+def main(table, building_list, json_file):
     database = "energy"
-    building_list = createBuildingList(building_file)
     database_conn, database_cur = connectToDatabase(database)
-    all_data, dates = getAllData(database_cur,building_list)
+    all_data, dates = getAllData(database_cur,building_list, table)
     json_data = encodeData(all_data, dates)
     json_file.write(json_data)
     disconnectFromDatabase(database_conn, database_cur)
 
-def createBuildingList(building_file):
-    building_list = list()
-    for building in building_file:
-        building = building.strip("\r\n")
-    	building_list.append(building)
-    return building_list
-
-def getAllData(database_cur, building_list, all_data = dict()):
+def getAllData(database_cur, building_list, table, all_data = dict()):
     max_rows = 0
     dates = list()
     for building in building_list:
-        database_rows, num_rows = getBuildingData(database_cur, building)
+        database_rows, num_rows = getBuildingData(database_cur, building, table)
         overwrite_dates, dates, max_rows = selectDates(num_rows, max_rows, 
                                                        dates)
         building_data = list()
@@ -42,22 +34,22 @@ def getAllData(database_cur, building_list, all_data = dict()):
     all_data = equalizeDataValues(all_data, max_rows)
     return all_data, dates
 
-def getBuildingData(database_cur, building):
-    sql_query = setSQLQuery(building)
+def getBuildingData(database_cur, building, table):
+    sql_query = setSQLQuery(building, table)
     database_cur.execute(sql_query)
     database_rows = database_cur.fetchall()
     num_entries = database_cur.rowcount
     return database_rows, num_entries
 
-def setSQLQuery(building):
+def setSQLQuery(building, table):
     if (building == " total"):
     	return "select extract(epoch from date_trunc('hour',date)) as when, "\
-        	"round(avg(preal),1) as value from electrical_energy where area='%s'"\
+        	"round(avg(preal),1) as value from " + table + " where area='%s'"\
         	" group by date_trunc('hour',date) order by date_trunc('hour',date)"\
         	% ("total")
     else:
    		return "select extract(epoch from date_trunc('hour',date)) as when, "\
-        	"round(avg(preal),1) as value from electrical_energy where area='%s'"\
+        	"round(avg(preal),1) as value from " + table + " where area='%s'"\
         	" group by date_trunc('hour',date) order by date_trunc('hour',date)"\
         	% (building)
 
@@ -123,16 +115,11 @@ def disconnectFromDatabase(database_conn, database_cur):
 
 if __name__ == '__main__':
     try:
-        in_file = open("/home/energy/public_html/production/eDisplay/building_list.txt")
-        temp_out_file = open("/home/energy/public_html/production/eDisplay/temp_line_chart.txt",'w')
-        main(in_file, temp_out_file)
-        in_file.close()
-        temp_out_file.close() 
-        new_file = open("/home/energy/public_html/production/eDisplay/temp_line_chart.txt")
-        out_file = open("/home/energy/public_html/production/eDisplay/line_chart.txt",'w')
-        for line in new_file:
-        	out_file.write(line)
-        out_file.close()
-        new_file.close()
+	displayDir = "/home/energy/public_html/production/eDisplay/"
+	minimalList = ["Warren", "Wilson", "Barrett", "Bundy", "OA", "Mills", "Hoerner"]
+	for table, fname, buildingList in [ ( "normed_electrical_energy", "line_chart.txt", minimalList), ("electrical_energy", "raw_line_chart.txt", minimalList + ["total"] ) ]:
+		out_file = open(displayDir + fname,'w')
+		main(table, buildingList, out_file)
+		out_file.close()
     except IOError:
         print "Error opening files"
