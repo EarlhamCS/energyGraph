@@ -3,3 +3,7 @@ usage. The eDisplay directory should be mapped to be a <Location> in apache. The
 directory contains crontabs that should be installed, database defintions
 that should be saved into postgres, and programs which query the energy monitoring
 hardware.
+
+Executing energy.sql as the energy user on new-proto will create the necessary schemas.
+Running this command on proto.cs.earlham.edu will migrate all the data to new-proto: 
+   pg_dump --data-only energy | bzip2 | ssh energy@test-proto "bunzip2 | psql energy
